@@ -2,10 +2,10 @@
 
 <li *ngFor="let question of questionBank;let currentIndex = index" id="base">
         Question No. : {{ question.questionId }} <br>
-        <h1>{{test}}</h1>
+        <h1>{{ answerList[currentIndex].answer }}</h1>
       <div style="color: blueviolet; padding: 20px;">
         Question  : {{ question.questionText }} <br>
-        <input type="radio" [name]="question.questionId" [(ngModel)]="test" [id]="'option1' + question.questionId" [value]="question.option1">
+        <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option1' + question.questionId" [value]="question.option1">
         <label [for]="'option1' + question.questionId">{{question.option1}}</label> <br>
         <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option2' + question.questionId" [value]="question.option2"> 
         <label [for]="'option2' + question.questionId">{{question.option2}}</label> <br>

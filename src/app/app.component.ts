@@ -18,7 +18,7 @@ export class AppComponent {
   answerList : any = [];
   
 
-  test : string;
+  test : string = "NO selection";
 
   constructor(private ts : TestserviceService){
     this.questionBank = ts.getQuestion();
