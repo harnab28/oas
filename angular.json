@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OASys"
+    }
+  },
+  "defaultProject": "OASys",
+  "cli": {
+    "analytics": false
+  }
 }
