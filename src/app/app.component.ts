@@ -14,32 +14,72 @@ export class AppComponent {
   title = 'OASys';
   questionBank: question[];
   questionAnswer: answer;
-
   answerList : any = [];
   
-
-  test : string = "NO selection";
 
   constructor(private ts : TestserviceService){
     this.questionBank = ts.getQuestion();
     console.log(this.questionBank)
+    
+    //setting answers
     this.answerList = this.questionBank.map(questionData => ({
       questionId: questionData.questionId,
-      answer : null
-    }))
+      questionType: questionData.questionType,
+      questionOptions : {
+        option1 : questionData.option1,
+        option2 : questionData.option2,
+        option3 : questionData.option3,
+        option4 : questionData.option4,
+      },
+      answer : null,
+      correctAns: questionData.correctOption
+    }))  
 
+    //setting timer
+    //this.startTimer();
 
-    
+    console.log(this.answerList);
+
   }
 
+  //timer realted variables
+  timer: any = null;
+  startTime: Date;
+  endTime: Date;
+  ellapsedTime = '00:00';
+  duration = '';
+
+  startTimer(){
+    this.startTime = new Date();
+      this.ellapsedTime = '00:00';
+      this.timer = setInterval(() => { this.tick(); }, 1000);
+      this.duration = this.parseTime(300);
+  }
+
+  parseTime(totalSeconds: number) {
+    let mins: string | number = Math.floor(totalSeconds / 60);
+    let secs: string | number = Math.round(totalSeconds % 60);
+    mins = (mins < 10 ? '0' : '') + mins;
+    secs = (secs < 10 ? '0' : '') + secs;
+    return `${mins}:${secs}`;
+  }
+
+  tick() {
+    const now = new Date();
+    const diff = (now.getTime() - this.startTime.getTime()) / 1000;
+    if (diff >= 300) {
+      //this.onSubmit();
+    }
+    this.ellapsedTime = this.parseTime(diff);
+  }
 
   check(){
-    console.log(this.answerList);
-  }
-
-  createans(){
 
   }
 
+  
 
+  putAnswer(event, currentIndex){
+      console.log(event.target);
+  }
 }

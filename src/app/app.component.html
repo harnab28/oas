@@ -1,19 +1,44 @@
 <h2>My Question Bank</h2>
+<!--<div>Time: {{ellapsedTime}} / {{duration}} </div>-->
 
+<div> {{answerList.answer}} </div>
 <li *ngFor="let question of questionBank;let currentIndex = index" id="base">
         Question No. : {{ question.questionId }} <br>
+
+
+      
+      <div *ngIf="question.questionType == 'mcq_single_answer'">
         <h1>{{ answerList[currentIndex].answer }}</h1>
-      <div style="color: blueviolet; padding: 20px;">
-        Question  : {{ question.questionText }} <br>
-        <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option1' + question.questionId" [value]="question.option1">
-        <label [for]="'option1' + question.questionId">{{question.option1}}</label> <br>
-        <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option2' + question.questionId" [value]="question.option2"> 
-        <label [for]="'option2' + question.questionId">{{question.option2}}</label> <br>
-        <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option3' + question.questionId" [value]="question.option3"> 
-        <label [for]="'option3' + question.questionId">{{question.option3}}</label> <br>
-        <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option4' + question.questionId" [value]="question.option4"> 
-        <label [for]="'option4' + question.questionId">{{question.option4}}</label> <br>
-    </div>
+        <div style="color: blueviolet; padding: 20px;">
+          Question  : {{ question.questionText }} <br>
+          <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option1' + question.questionId" [value]="question.option1">
+          <label [for]="'option1' + question.questionId">{{question.option1}}</label> <br>
+          <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option2' + question.questionId" [value]="question.option2"> 
+          <label [for]="'option2' + question.questionId">{{question.option2}}</label> <br>
+          <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option3' + question.questionId" [value]="question.option3"> 
+          <label [for]="'option3' + question.questionId">{{question.option3}}</label> <br>
+          <input type="radio" [name]="question.questionId" [(ngModel)]="answerList[currentIndex].answer" [id]="'option4' + question.questionId" [value]="question.option4"> 
+          <label [for]="'option4' + question.questionId">{{question.option4}}</label> <br>
+        </div>
+      </div>
+
+
+      <div *ngIf="question.questionType == 'mcq_multiple_answer'">
+        <h1>{{ answerList[currentIndex].answer }}</h1>
+        <div style="color: blueviolet; padding: 20px;">
+          Question  : {{ question.questionText }} <br>
+          <input type="checkbox" (change)="putAnswer($event, currentIndex)"  [id]="'option1' + question.questionId">
+          <label [for]="'option1' + question.questionId">{{question.option1}}</label> <br>
+          <input type="checkbox" (change)="putAnswer($event, currentIndex)" [id]="'option2' + question.questionId"> 
+          <label [for]="'option2' + question.questionId">{{question.option2}}</label> <br>
+          <input type="checkbox" (change)="putAnswer($event, currentIndex)" [id]="'option3' + question.questionId"> 
+          <label [for]="'option3' + question.questionId">{{question.option3}}</label> <br>
+          <input type="checkbox" (change)="putAnswer($event, currentIndex)" [id]="'option4' + question.questionId"> 
+          <label [for]="'option4' + question.questionId">{{question.option4}}</label> <br>
+        </div>
+
+      </div>
+
 </li>
 
 <input type="submit" (click)="check()"/>
