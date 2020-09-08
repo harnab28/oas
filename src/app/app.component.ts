@@ -1,45 +1,34 @@
 import { Component } from '@angular/core';
 import { TestserviceService } from './services/testservice.service';
-import { question, answer } from './question.interface'
+import { question, answer } from './question.interface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
-
 export class AppComponent {
-
   title = 'OASys';
   questionBank: question[];
   questionAnswer: answer;
-  answerList : any = [];
-  
+  answerList: any = [];
 
-  constructor(private ts : TestserviceService){
+  constructor(private ts: TestserviceService) {
     this.questionBank = ts.getQuestion();
-    console.log(this.questionBank)
-    
+    console.log(this.questionBank);
+
     //setting answers
-    this.answerList = this.questionBank.map(questionData => ({
+    this.answerList = this.questionBank.map((questionData) => ({
       questionId: questionData.questionId,
       questionType: questionData.questionType,
-      questionOptions : {
-        option1 : questionData.option1,
-        option2 : questionData.option2,
-        option3 : questionData.option3,
-        option4 : questionData.option4,
-      },
-      answer : null,
-      correctAns: questionData.correctOption
-    }))  
+      answer: [],
+      correctAns: questionData.correctOption,
+    }));
 
     //setting timer
     //this.startTimer();
 
     console.log(this.answerList);
-
   }
 
   //timer realted variables
@@ -49,11 +38,13 @@ export class AppComponent {
   ellapsedTime = '00:00';
   duration = '';
 
-  startTimer(){
+  startTimer() {
     this.startTime = new Date();
-      this.ellapsedTime = '00:00';
-      this.timer = setInterval(() => { this.tick(); }, 1000);
-      this.duration = this.parseTime(300);
+    this.ellapsedTime = '00:00';
+    this.timer = setInterval(() => {
+      this.tick();
+    }, 1000);
+    this.duration = this.parseTime(300);
   }
 
   parseTime(totalSeconds: number) {
@@ -73,13 +64,20 @@ export class AppComponent {
     this.ellapsedTime = this.parseTime(diff);
   }
 
-  check(){
+  check() {}
 
+  isAnswerChecked(answerOptions, answer) {
+
+    return !!answerOptions.includes(answer);
   }
 
-  
-
-  putAnswer(event, currentIndex){
-      console.log(event.target);
+  onAnswerChange(questionIndex, answer) {
+    if (this.answerList[questionIndex].answer.includes(answer)) {
+      this.answerList[questionIndex].answer.filter(
+        (answers) => answers != answer
+      );
+    } else {
+      this.answerList[questionIndex].answer.push(answer);
+    }
   }
 }
