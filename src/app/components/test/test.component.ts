@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+
 import { TestserviceService } from '../../services/testservice.service';
 import { question, answer } from '../../question.interface';
 
 @Component({
   selector: 'test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  styleUrls: ['./test.component.scss'],
 })
-export class TestComponent{
-
+export class TestComponent {
   questionBank: question[];
   questionAnswer: answer;
   answerList: any = [];
@@ -27,16 +27,13 @@ export class TestComponent{
     }));
 
     //setting timer
-   
 
     console.log(this.answerList);
   }
 
-  
   check() {}
 
   isAnswerChecked(answerOptions, answer) {
-
     return !!answerOptions.includes(answer);
   }
 
@@ -49,5 +46,4 @@ export class TestComponent{
       this.answerList[questionIndex].answer.push(answer);
     }
   }
-
 }

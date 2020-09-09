@@ -3,16 +3,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss']
+  styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
-
   @Input() endSeconds: number;
-  @Output() finished  = new EventEmitter<boolean> ();
+  @Output() finished = new EventEmitter<boolean>();
 
-  constructor() { 
-    
-  }
+  constructor() {}
 
   ngOnInit(): void {
     //console.log(this.endSeconds)
@@ -48,12 +45,9 @@ export class TimerComponent implements OnInit {
     const diff = (now.getTime() - this.startTime.getTime()) / 1000;
     if (diff >= this.endSeconds) {
       this.finished.emit(true);
-    }
-    else
-    {
+    } else {
       this.finished.emit(false);
     }
     this.ellapsedTime = this.parseTime(diff);
   }
-
 }

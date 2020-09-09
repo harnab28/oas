@@ -2,22 +2,16 @@ import { Injectable } from '@angular/core';
 import { QuestionBank } from '../question.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestserviceService {
-  
-  question : any;
+  question: any;
 
-  
-  constructor() { 
+  constructor() {
     this.question = QuestionBank;
   }
 
-  getQuestion(){
+  getQuestion() {
     return this.question;
   }
-
-
-
-
 }

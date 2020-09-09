@@ -1,122 +1,122 @@
 <div class="container">
-    <h2>My Question Bank</h2>
-    <!--<div>Time: {{ellapsedTime}} / {{duration}} </div>-->
+  <h2>My Question Bank</h2>
+  <!--<div>Time: {{ellapsedTime}} / {{duration}} </div>-->
 
-    <timer [endSeconds]="endTime"></timer>
+  <timer [endSeconds]="endTime"></timer>
 
-    <li *ngFor="let question of questionBank; let currentIndex = index" id="base">
+  <li *ngFor="let question of questionBank; let currentIndex = index" id="base">
     Question No. : {{ question.questionId }} <br />
 
     <div *ngIf="question.questionType == 'mcq_single_answer'">
-        <h1>{{ answerList[currentIndex].answer }}</h1>
-        <div style="color: blueviolet; padding: 20px">
+      <h1>{{ answerList[currentIndex].answer }}</h1>
+      <div style="color: blueviolet; padding: 20px">
         Question : {{ question.questionText }} <br />
         <input
-            type="radio"
-            [name]="question.questionId"
-            [(ngModel)]="answerList[currentIndex].answer"
-            [id]="'option1' + question.questionId"
-            [value]="question.option1"
+          type="radio"
+          [name]="question.questionId"
+          [(ngModel)]="answerList[currentIndex].answer"
+          [id]="'option1' + question.questionId"
+          [value]="question.option1"
         />
         <label [for]="'option1' + question.questionId">{{
-            question.option1
+          question.option1
         }}</label>
         <br />
         <input
-            type="radio"
-            [name]="question.questionId"
-            [(ngModel)]="answerList[currentIndex].answer"
-            [id]="'option2' + question.questionId"
-            [value]="question.option2"
+          type="radio"
+          [name]="question.questionId"
+          [(ngModel)]="answerList[currentIndex].answer"
+          [id]="'option2' + question.questionId"
+          [value]="question.option2"
         />
         <label [for]="'option2' + question.questionId">{{
-            question.option2
+          question.option2
         }}</label>
         <br />
         <input
-            type="radio"
-            [name]="question.questionId"
-            [(ngModel)]="answerList[currentIndex].answer"
-            [id]="'option3' + question.questionId"
-            [value]="question.option3"
+          type="radio"
+          [name]="question.questionId"
+          [(ngModel)]="answerList[currentIndex].answer"
+          [id]="'option3' + question.questionId"
+          [value]="question.option3"
         />
         <label [for]="'option3' + question.questionId">{{
-            question.option3
+          question.option3
         }}</label>
         <br />
         <input
-            type="radio"
-            [name]="question.questionId"
-            [(ngModel)]="answerList[currentIndex].answer"
-            [id]="'option4' + question.questionId"
-            [value]="question.option4"
+          type="radio"
+          [name]="question.questionId"
+          [(ngModel)]="answerList[currentIndex].answer"
+          [id]="'option4' + question.questionId"
+          [value]="question.option4"
         />
         <label [for]="'option4' + question.questionId">{{
-            question.option4
+          question.option4
         }}</label>
         <br />
-        </div>
+      </div>
     </div>
 
     <div *ngIf="question.questionType == 'mcq_multiple_answer'">
-        <h1>{{ answerList[currentIndex].answer }}</h1>
-        <div style="color: blueviolet; padding: 20px">
+      <h1>{{ answerList[currentIndex].answer }}</h1>
+      <div style="color: blueviolet; padding: 20px">
         Question : {{ question.questionText }} <br />
         <input
-            type="checkbox"
-            (change)="onAnswerChange(currentIndex, question.option1)"
-            [checked]="
+          type="checkbox"
+          (change)="onAnswerChange(currentIndex, question.option1)"
+          [checked]="
             isAnswerChecked(answerList[currentIndex].answer, question.option1)
-            "
-            [value]="question.option1"
-            [id]="'option1' + question.questionId"
+          "
+          [value]="question.option1"
+          [id]="'option1' + question.questionId"
         />
         <label [for]="'option1' + question.questionId">{{
-            question.option1
+          question.option1
         }}</label>
         <br />
         <input
-            type="checkbox"
-            (change)="onAnswerChange(currentIndex, question.option2)"
-            [checked]="
+          type="checkbox"
+          (change)="onAnswerChange(currentIndex, question.option2)"
+          [checked]="
             isAnswerChecked(answerList[currentIndex].answer, question.option2)
-            "
-            [value]="question.option2"
-            [id]="'option2' + question.questionId"
+          "
+          [value]="question.option2"
+          [id]="'option2' + question.questionId"
         />
         <label [for]="'option2' + question.questionId">{{
-            question.option2
+          question.option2
         }}</label>
         <br />
         <input
-            type="checkbox"
-            (change)="onAnswerChange(currentIndex, question.option3)"
-            [checked]="
+          type="checkbox"
+          (change)="onAnswerChange(currentIndex, question.option3)"
+          [checked]="
             isAnswerChecked(answerList[currentIndex].answer, question.option3)
-            "
-            [value]="question.option3"
-            [id]="'option3' + question.questionId"
+          "
+          [value]="question.option3"
+          [id]="'option3' + question.questionId"
         />
         <label [for]="'option3' + question.questionId">{{
-            question.option3
+          question.option3
         }}</label>
         <br />
         <input
-            type="checkbox"
-            (change)="onAnswerChange(currentIndex, question.option4)"
-            [checked]="
+          type="checkbox"
+          (change)="onAnswerChange(currentIndex, question.option4)"
+          [checked]="
             isAnswerChecked(answerList[currentIndex].answer, question.option4)
-            "
-            [value]="question.option4"
-            [id]="'option4' + question.questionId"
+          "
+          [value]="question.option4"
+          [id]="'option4' + question.questionId"
         />
         <label [for]="'option4' + question.questionId">{{
-            question.option4
+          question.option4
         }}</label>
         <br />
-        </div>
+      </div>
     </div>
-    </li>
+  </li>
 
-    <input type="submit" (click)="check()" />
+  <input type="submit" (click)="check()" />
 </div>
