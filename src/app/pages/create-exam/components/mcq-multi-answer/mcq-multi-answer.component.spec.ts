@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestComponent } from './test.component';
+import { McqMultiAnswerComponent } from './mcq-multi-answer.component';
 
-describe('TestComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+describe('McqMultiAnswerComponent', () => {
+  let component: McqMultiAnswerComponent;
+  let fixture: ComponentFixture<McqMultiAnswerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestComponent ]
+      declarations: [ McqMultiAnswerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(McqMultiAnswerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

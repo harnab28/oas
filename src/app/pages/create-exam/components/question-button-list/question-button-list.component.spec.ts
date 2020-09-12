@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimerComponent } from './timer.component';
+import { QuestionButtonListComponent } from './question-button-list.component';
 
-describe('TimerComponent', () => {
-  let component: TimerComponent;
-  let fixture: ComponentFixture<TimerComponent>;
+describe('QuestionButtonListComponent', () => {
+  let component: QuestionButtonListComponent;
+  let fixture: ComponentFixture<QuestionButtonListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimerComponent ]
+      declarations: [ QuestionButtonListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimerComponent);
+    fixture = TestBed.createComponent(QuestionButtonListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
