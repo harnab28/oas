@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CreateExamModule } from './pages/create-exam/create-exam.module'
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CreateExamModule
   ],
   providers: [],
   bootstrap: [AppComponent]

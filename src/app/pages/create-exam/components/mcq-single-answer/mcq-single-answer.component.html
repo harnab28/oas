@@ -1,0 +1,47 @@
+<div style="color: blueviolet; padding: 20px">
+    Question : {{ question.questionText }} <br />
+    <input
+      type="radio"
+      [name]="question.questionId"
+      [id]="'option1' + question.questionId"
+      [value]="question.option1"
+      (change)="selectOption($event)" 
+    />
+    <label [for]="'option1' + question.questionId">{{
+      question.option1
+    }}</label>
+    <br />
+    <input
+      type="radio"
+      [name]="question.questionId"
+      [id]="'option2' + question.questionId"
+      [value]="question.option2"
+      (change)="selectOption($event)" 
+    />
+    <label [for]="'option2' + question.questionId">{{
+      question.option2
+    }}</label>
+    <br />
+    <input
+      type="radio"
+      [name]="question.questionId"
+      [id]="'option3' + question.questionId"
+      [value]="question.option3"
+      (change)="selectOption($event)" 
+    />
+    <label [for]="'option3' + question.questionId">{{
+      question.option3
+    }}</label>
+    <br />
+    <input
+      type="radio"
+      [name]="question.questionId"
+      [id]="'option4' + question.questionId"
+      [value]="question.option4"
+      (change)="selectOption($event)" 
+    />
+    <label [for]="'option4' + question.questionId">{{
+      question.option4
+    }}</label>
+    <br />
+  </div>
