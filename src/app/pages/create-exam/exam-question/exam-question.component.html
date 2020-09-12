@@ -1,7 +1,7 @@
 <h2>My Question Bank</h2>
 <!--<div>Time: {{ellapsedTime}} / {{duration}} </div>-->
 
-<li *ngFor="let question of questionBank; let currentIndex = index" id="base">
+<li *ngFor="let question of questionBank; let currentIndex = index" [hidden]="currentIndex != selectedIndex" id="base" >
   Question No. : {{ question.questionId }} <br />
 
   <div *ngIf="question.questionType == 'mcq_single_answer'">
@@ -15,4 +15,8 @@
   </div>
 </li>
 
-<input type="submit" (click)="onSubmit()" />
+<input type="submit" (click)="onSubmit()">
+<button (click)="remove()">remove</button>
+<button (click)="prev()">Previous</button>
+<button (click)="next()">Next</button>
+

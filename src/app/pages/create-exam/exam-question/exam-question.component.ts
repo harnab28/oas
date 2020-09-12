@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TestserviceService } from '../../../services/testservice.service';
 import { question } from '../../../question.interface'
 
- 
+
 @Component({
   selector: 'app-exam-question',
   templateUrl: './exam-question.component.html',
@@ -15,10 +15,13 @@ export class ExamQuestionComponent implements OnInit {
   questionBank: question[];
   answerList: any = [];
 
-  
+  selectedIndex: any;
+
   constructor(private ts: TestserviceService) {
     this.questionBank = this.ts.getQuestion();
     //setting answers
+
+    this.selectedIndex = 0;
 
     this.answerList = this.questionBank.map((questionData) => ({
       questionId: questionData.questionId,
@@ -27,22 +30,37 @@ export class ExamQuestionComponent implements OnInit {
       correctAns: questionData.correctOption,
     }));
 
-   }
+  }
 
   ngOnInit(): void {
- 
+
   }
-  singleMcq(event, questionIndex){
+  singleMcq(event, questionIndex) {
     this.answerList[questionIndex].answer = [];
     this.answerList[questionIndex].answer.push(event);
+    console.log(questionIndex, 'a', this.answerList[questionIndex])
   }
 
-  multiMcq(event, questionIndex){
+  multiMcq(event, questionIndex) {
     this.answerList[questionIndex].answer = [];
     this.answerList[questionIndex].answer = event;
     console.log(this.answerList[questionIndex].answer, questionIndex);
   }
 
+  prev() {
+    if (this.selectedIndex > 0)
+      this.selectedIndex--;
+  }
+
+  remove() {
+    this.answerList[this.selectedIndex].answer = []
+    console.log(this.selectedIndex, 'b', this.answerList[this.selectedIndex])
+  }
+
+  next() {
+    if (this.selectedIndex < this.questionBank.length - 1)
+      this.selectedIndex++;
+  }
   //timer realted variables
   timer: any = null;
   startTime: Date;
