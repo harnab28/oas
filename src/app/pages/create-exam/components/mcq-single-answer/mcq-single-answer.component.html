@@ -5,7 +5,7 @@
       [name]="question.questionId"
       [id]="'option1' + question.questionId"
       [value]="question.option1"
-      (change)="selectOption($event)" 
+      (click)="selectOption($event)" 
     />
     <label [for]="'option1' + question.questionId">{{
       question.option1
@@ -16,7 +16,7 @@
       [name]="question.questionId"
       [id]="'option2' + question.questionId"
       [value]="question.option2"
-      (change)="selectOption($event)" 
+      (click)="selectOption($event)" 
     />
     <label [for]="'option2' + question.questionId">{{
       question.option2
@@ -27,7 +27,7 @@
       [name]="question.questionId"
       [id]="'option3' + question.questionId"
       [value]="question.option3"
-      (change)="selectOption($event)" 
+      (click)="selectOption($event)" 
     />
     <label [for]="'option3' + question.questionId">{{
       question.option3
@@ -38,7 +38,7 @@
       [name]="question.questionId"
       [id]="'option4' + question.questionId"
       [value]="question.option4"
-      (change)="selectOption($event)" 
+      (click)="selectOption($event)" 
     />
     <label [for]="'option4' + question.questionId">{{
       question.option4

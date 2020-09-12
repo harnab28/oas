@@ -61,6 +61,10 @@ export class ExamQuestionComponent implements OnInit {
     if (this.selectedIndex < this.questionBank.length - 1)
       this.selectedIndex++;
   }
+
+  clickedButton(event){
+    this.selectedIndex = event;
+  }
   //timer realted variables
   timer: any = null;
   startTime: Date;

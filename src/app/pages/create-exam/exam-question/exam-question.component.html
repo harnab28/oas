@@ -1,5 +1,6 @@
 <h2>My Question Bank</h2>
 <!--<div>Time: {{ellapsedTime}} / {{duration}} </div>-->
+<questionButtonList [numberOfButtons]="questionBank.length" (emitSelectedButton)="clickedButton($event)"> </questionButtonList>
 
 <li *ngFor="let question of questionBank; let currentIndex = index" [hidden]="currentIndex != selectedIndex" id="base" >
   Question No. : {{ question.questionId }} <br />

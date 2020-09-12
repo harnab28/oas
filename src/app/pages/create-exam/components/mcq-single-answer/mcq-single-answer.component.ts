@@ -16,8 +16,17 @@ export class McqSingleAnswerComponent implements OnInit {
   }
 
   selectOption(event){
-    
-    this.emitAnswer.emit(event.target.value);
+    if(this.answer == event.target.value)
+    {
+        event.target.checked = false;
+        this.answer = '';
+    }
+    else
+    {
+      event.target.checked = true;
+      this.answer = event.target.value;
+    }
+      this.emitAnswer.emit(this.answer);
   }
 
 }
