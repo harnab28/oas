@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ExamQuestionComponent } from './pages/create-exam/exam-question/exam-question.component';
-
 import { TestresultComponent } from './pages/evaluate-test/testresult/testresult.component'
 
 

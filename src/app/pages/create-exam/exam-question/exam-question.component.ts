@@ -15,7 +15,7 @@ export class ExamQuestionComponent implements OnInit {
 
   questionBank: any[];
   answerList: any = [];
-  candidateName: string;
+  candidateName: string = '';
 
   selectedIndex: any;
 
@@ -28,6 +28,7 @@ export class ExamQuestionComponent implements OnInit {
 
     this.answerList = this.questionBank.map((questionData) => ({
       questionId: questionData.questionId,
+      questionType: questionData.questionType,
       answerResponse: [],
     }));
 
@@ -106,7 +107,7 @@ export class ExamQuestionComponent implements OnInit {
     clearInterval(this.timer);
     this.ts.setResponse(this.candidateName, this.answerList);
     console.log(this.ts.getResponse());
-    this.router.navigateByUrl['/endtest']
+    this.router.navigate(['/endtest']);
   }
 
 }
