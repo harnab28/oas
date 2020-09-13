@@ -1,23 +1,45 @@
 <h2>My Question Bank</h2>
-<!--<div>Time: {{ellapsedTime}} / {{duration}} </div>-->
-<questionButtonList [numberOfButtons]="questionBank.length" (emitSelectedButton)="clickedButton($event)"> </questionButtonList>
+<div>Time: {{ ellapsedTime }} / {{ duration }}</div>
 
-<li *ngFor="let question of questionBank; let currentIndex = index" [hidden]="currentIndex != selectedIndex" id="base" >
+<div>
+  Name : <input type="text" [(ngModel)]="candidateName" name="" id="" />
+</div>
+
+<br />
+
+<questionButtonList
+  [numberOfButtons]="questionBank.length"
+  (emitSelectedButton)="clickedButton($event)"
+>
+</questionButtonList>
+
+<li
+  *ngFor="let question of questionBank; let currentIndex = index"
+  [hidden]="currentIndex != selectedIndex"
+  id="base"
+>
   Question No. : {{ question.questionId }} <br />
 
-  <div *ngIf="question.questionType == 'mcq_single_answer'">
-    <h1>{{ answerList[currentIndex].answer }}</h1>
-    <app-mcq-single-answer [question]="question" (emitAnswer)="singleMcq($event,currentIndex)"> </app-mcq-single-answer>
+  <div *ngIf="question.questionType == 'MCQ_SINGLE'">
+    <h1>{{ answerList[currentIndex].answerResponse }}</h1>
+    <app-mcq-single-answer
+      [question]="question"
+      (emitAnswer)="singleMcq($event, currentIndex)"
+    >
+    </app-mcq-single-answer>
   </div>
 
-  <div *ngIf="question.questionType == 'mcq_multiple_answer'">
-    <h1>{{ answerList[currentIndex].answer }}</h1>
-    <app-mcq-multi-answer [question]="question" (emitAnswer)="multiMcq($event,currentIndex)"> </app-mcq-multi-answer>
+  <div *ngIf="question.questionType == 'MCQ_MULTIPLE'">
+    <h1>{{ answerList[currentIndex].answerResponse | json }}</h1>
+    <app-mcq-multi-answer
+      [question]="question"
+      (emitAnswer)="multiMcq($event, currentIndex)"
+    >
+    </app-mcq-multi-answer>
   </div>
 </li>
 
-<input type="submit" (click)="onSubmit()">
-<button (click)="remove()">remove</button>
-<button (click)="prev()">Previous</button>
-<button (click)="next()">Next</button>
-
+<input type="submit" (click)="onSubmit()" /> &nbsp;
+<button (click)="remove()">Clear Response</button>
+<button (click)="prev()">Previous</button> &nbsp;
+<button (click)="next()">Next</button> &nbsp;

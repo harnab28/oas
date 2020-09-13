@@ -3,19 +3,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-mcq-multi-answer',
   templateUrl: './mcq-multi-answer.component.html',
-  styleUrls: ['./mcq-multi-answer.component.scss']
+  styleUrls: ['./mcq-multi-answer.component.scss'],
 })
 export class McqMultiAnswerComponent implements OnInit {
-
-  @Input() question : any;
+  @Input() question: any;
   @Output() emitAnswer = new EventEmitter<string[]>();
 
   answer = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onAnswerChange(answer) {
     const index = this.answer.indexOf(answer);
@@ -30,5 +28,4 @@ export class McqMultiAnswerComponent implements OnInit {
   isAnswerChecked(answer) {
     return !!this.answer.includes(answer);
   }
-
 }

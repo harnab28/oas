@@ -1,70 +1,67 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TestserviceService } from '../../../services/testservice.service';
-import { question } from '../../../question.interface'
-
 
 @Component({
   selector: 'app-exam-question',
   templateUrl: './exam-question.component.html',
-  styleUrls: ['./exam-question.component.scss']
+  styleUrls: ['./exam-question.component.scss'],
 })
 export class ExamQuestionComponent implements OnInit {
-
-
-  questionBank: question[];
+  questionBank: any[];
+  // questionBank: IQuestion[];
   answerList: any = [];
+  candidateName: string;
 
   selectedIndex: any;
 
-  constructor(private ts: TestserviceService) {
+  constructor(private ts: TestserviceService, private router: Router) {
     this.questionBank = this.ts.getQuestion();
+    console.log(this.questionBank);
     //setting answers
 
     this.selectedIndex = 0;
 
     this.answerList = this.questionBank.map((questionData) => ({
       questionId: questionData.questionId,
-      questionType: questionData.questionType,
-      answer: [],
-      correctAns: questionData.correctOption,
+      answerResponse: [],
     }));
 
+    //start timer
+    this.startTimer(60);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
   singleMcq(event, questionIndex) {
-    this.answerList[questionIndex].answer = [];
-    this.answerList[questionIndex].answer.push(event);
-    console.log(questionIndex, 'a', this.answerList[questionIndex])
+    this.answerList[questionIndex].answerResponse = event;
+    //console.log(questionIndex, 'a', this.answerList[questionIndex])
   }
 
   multiMcq(event, questionIndex) {
-    this.answerList[questionIndex].answer = [];
-    this.answerList[questionIndex].answer = event;
-    console.log(this.answerList[questionIndex].answer, questionIndex);
+    this.answerList[questionIndex].answerResponse = [];
+    this.answerList[questionIndex].answerResponse = event;
+    //console.log(this.answerList[questionIndex].answerResponse, questionIndex);
   }
 
   prev() {
-    if (this.selectedIndex > 0)
-      this.selectedIndex--;
+    if (this.selectedIndex > 0) this.selectedIndex--;
   }
 
   remove() {
-    this.answerList[this.selectedIndex].answer = []
-    console.log(this.selectedIndex, 'b', this.answerList[this.selectedIndex])
+    this.answerList[this.selectedIndex].answerResponse = [];
+    //console.log(this.selectedIndex, 'b', this.answerList[this.selectedIndex])
   }
 
   next() {
-    if (this.selectedIndex < this.questionBank.length - 1)
-      this.selectedIndex++;
+    if (this.selectedIndex < this.questionBank.length - 1) this.selectedIndex++;
   }
 
-  clickedButton(event){
+  clickedButton(event) {
     this.selectedIndex = event;
   }
+
   //timer realted variables
   timer: any = null;
   startTime: Date;
@@ -72,13 +69,13 @@ export class ExamQuestionComponent implements OnInit {
   ellapsedTime = '00:00';
   duration = '';
 
-  startTimer() {
+  startTimer(t) {
     this.startTime = new Date();
     this.ellapsedTime = '00:00';
     this.timer = setInterval(() => {
-      this.tick();
+      this.tick(t);
     }, 1000);
-    this.duration = this.parseTime(300);
+    this.duration = this.parseTime(t);
   }
 
   parseTime(totalSeconds: number) {
@@ -89,17 +86,19 @@ export class ExamQuestionComponent implements OnInit {
     return `${mins}:${secs}`;
   }
 
-  tick() {
+  tick(t) {
     const now = new Date();
     const diff = (now.getTime() - this.startTime.getTime()) / 1000;
-    if (diff >= 300) {
-      //this.onSubmit();
+    if (diff >= t) {
+      this.onSubmit();
     }
     this.ellapsedTime = this.parseTime(diff);
   }
 
   onSubmit() {
-
+    clearInterval(this.timer);
+    this.ts.setResponse(this.candidateName, this.answerList);
+    console.log(this.ts.getResponse());
+    this.router.navigateByUrl['/endtest'];
   }
-
 }
