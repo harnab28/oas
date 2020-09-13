@@ -21,19 +21,19 @@
   Question No. : {{ question.questionId }} <br />
 
   <div *ngIf="question.questionType == 'MCQ_SINGLE'">
-    <h1>{{ answerList[currentIndex].answerResponse }}</h1>
     <app-mcq-single-answer
       [question]="question"
-      (emitAnswer)="singleMcq($event, currentIndex)"
+      [selectedAnswer]="answerList[currentIndex].answerResponse"
+      (emitSelectedAnswer)="singleMcq($event, currentIndex)"
     >
     </app-mcq-single-answer>
   </div>
 
   <div *ngIf="question.questionType == 'MCQ_MULTIPLE'">
-    <h1>{{ answerList[currentIndex].answerResponse | json }}</h1>
     <app-mcq-multi-answer
       [question]="question"
-      (emitAnswer)="multiMcq($event, currentIndex)"
+      [selectedAnswer]="answerList[currentIndex].answerResponse"
+      (emitSelectedAnswer)="multiMcq($event, currentIndex)"
     >
     </app-mcq-multi-answer>
   </div>

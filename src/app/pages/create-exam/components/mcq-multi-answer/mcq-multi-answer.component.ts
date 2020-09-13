@@ -7,7 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class McqMultiAnswerComponent implements OnInit {
   @Input() question: any;
-  @Output() emitAnswer = new EventEmitter<string[]>();
+  @Input() selectedAnswer: any;
+  @Output() emitSelectedAnswer = new EventEmitter<string[]>();
 
   answer = [];
 
@@ -22,10 +23,10 @@ export class McqMultiAnswerComponent implements OnInit {
     } else {
       this.answer.push(answer);
     }
-    this.emitAnswer.emit(this.answer);
+    this.emitSelectedAnswer.emit(this.answer);
   }
 
   isAnswerChecked(answer) {
-    return !!this.answer.includes(answer);
+    return this.answer.includes(answer);
   }
 }

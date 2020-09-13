@@ -7,13 +7,29 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class McqSingleAnswerComponent implements OnInit {
   @Input() question: any;
-  @Output() emitAnswer = new EventEmitter<string[]>();
+  @Input() selectedAnswer: any;
+  @Output() emitSelectedAnswer = new EventEmitter<string[]>();
   answer: string[];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    console.log('ngOnInit ', this.selectedAnswer);
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit ', this.selectedAnswer);
+  }
+
+  ngViewContentInit() {
+    console.log('ngViewContentInit ', this.selectedAnswer);
+  }
+
+  ngViewContentChecked() {
+    console.log('ngViewContentChecked ', this.selectedAnswer);
+  }
 
   selectOption(event) {
+    console.log(this.selectedAnswer);
     if (this.answer == event.target.value) {
       event.target.checked = false;
       this.answer = [];
@@ -21,6 +37,6 @@ export class McqSingleAnswerComponent implements OnInit {
       event.target.checked = true;
       this.answer = event.target.value;
     }
-    this.emitAnswer.emit(this.answer);
+    this.emitSelectedAnswer.emit(this.answer);
   }
 }

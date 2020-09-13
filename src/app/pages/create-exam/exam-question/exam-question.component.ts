@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { TestserviceService } from '../../../services/testservice.service';
+import { TestService } from '../../../services/test-service.service';
 
 @Component({
   selector: 'app-exam-question',
@@ -9,40 +8,50 @@ import { TestserviceService } from '../../../services/testservice.service';
   styleUrls: ['./exam-question.component.scss'],
 })
 export class ExamQuestionComponent implements OnInit {
-  questionBank: any[];
-  // questionBank: IQuestion[];
+  questionBank: any[] = [];
   answerList: any = [];
-  candidateName: string;
+  candidateName: string = '';
 
   selectedIndex: any;
 
-  constructor(private ts: TestserviceService, private router: Router) {
-    this.questionBank = this.ts.getQuestion();
-    console.log(this.questionBank);
+  constructor(private ts: TestService) {
+    //start timer
+    this.startTimer(60);
+  }
+
+  ngOnInit() {
+    this.handleSetQuestionListing();
+    this.handleGetQuestionListing();
     //setting answers
 
     this.selectedIndex = 0;
 
     this.answerList = this.questionBank.map((questionData) => ({
       questionId: questionData.questionId,
+      questionType: questionData.questionType,
       answerResponse: [],
     }));
-
-    //start timer
-    this.startTimer(60);
   }
 
-  ngOnInit(): void {}
+  handleGetQuestionListing() {
+    return this.ts.getQuestionListing().subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  handleSetQuestionListing() {
+    return this.ts.setQuestionListing().subscribe((response) => {
+      console.log(response);
+    });
+  }
 
   singleMcq(event, questionIndex) {
     this.answerList[questionIndex].answerResponse = event;
-    //console.log(questionIndex, 'a', this.answerList[questionIndex])
   }
 
   multiMcq(event, questionIndex) {
     this.answerList[questionIndex].answerResponse = [];
     this.answerList[questionIndex].answerResponse = event;
-    //console.log(this.answerList[questionIndex].answerResponse, questionIndex);
   }
 
   prev() {
@@ -51,7 +60,6 @@ export class ExamQuestionComponent implements OnInit {
 
   remove() {
     this.answerList[this.selectedIndex].answerResponse = [];
-    //console.log(this.selectedIndex, 'b', this.answerList[this.selectedIndex])
   }
 
   next() {
@@ -97,8 +105,8 @@ export class ExamQuestionComponent implements OnInit {
 
   onSubmit() {
     clearInterval(this.timer);
-    this.ts.setResponse(this.candidateName, this.answerList);
-    console.log(this.ts.getResponse());
-    this.router.navigateByUrl['/endtest'];
+    // this.ts.setResponse(this.candidateName, this.answerList);
+    // console.log(this.ts.getResponse());
+    // this.router.navigateByUrl['/endtest'];
   }
 }

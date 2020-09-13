@@ -6,6 +6,7 @@
       [name]="question.questionId"
       [id]="'option' + i + question.questionId"
       [value]="option"
+      [(ngModel)]="selectedAnswer"
       (click)="selectOption($event)"
     />
     <label [for]="'option' + i + question.questionId">{{ option }}</label>

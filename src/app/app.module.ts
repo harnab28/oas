@@ -5,25 +5,24 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { CreateExamModule } from './pages/create-exam/create-exam.module'
-import { EvaluateTestModule } from './pages/evaluate-test/evaluate-test.module'
+import { CreateExamModule } from './pages/create-exam/create-exam.module';
+import { EvaluateTestModule } from './pages/evaluate-test/evaluate-test.module';
 
-import { RouterModule } from '@angular/router'
-
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     CreateExamModule,
     EvaluateTestModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
