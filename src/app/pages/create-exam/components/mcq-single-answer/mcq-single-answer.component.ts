@@ -8,8 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class McqSingleAnswerComponent implements OnInit {
 
   @Input() question: any;
-  @Output() emitAnswer = new EventEmitter<string>();
-  answer : string;
+  @Output() emitAnswer = new EventEmitter<string[]>();
+  answer :string[]; 
   constructor() { }
 
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class McqSingleAnswerComponent implements OnInit {
     if(this.answer == event.target.value)
     {
         event.target.checked = false;
-        this.answer = '';
+        this.answer = [];
     }
     else
     {

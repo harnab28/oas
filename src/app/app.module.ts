@@ -4,7 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { CreateExamModule } from './pages/create-exam/create-exam.module'
+import { EvaluateTestModule } from './pages/evaluate-test/evaluate-test.module'
+
+import { RouterModule } from '@angular/router'
+
 
 @NgModule({
   declarations: [
@@ -14,7 +19,9 @@ import { CreateExamModule } from './pages/create-exam/create-exam.module'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CreateExamModule
+    CreateExamModule,
+    EvaluateTestModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

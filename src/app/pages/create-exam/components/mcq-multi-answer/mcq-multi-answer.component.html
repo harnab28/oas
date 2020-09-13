@@ -1,55 +1,12 @@
 <div style="color: blueviolet; padding: 20px">
     Question : {{ question.questionText }} <br />
-    <input
-      type="checkbox"
-      (change)="onAnswerChange(question.option1)"
-      [checked]="
-        isAnswerChecked(question.option1)
-      "
-      [value]="question.option1"
-      [id]="'option1' + question.questionId"
-    />
-    <label [for]="'option1' + question.questionId">{{
-          question.option1
-        }}</label>
-    <br />
-    <input
-      type="checkbox"
-      (change)="onAnswerChange(question.option2)"
-      [checked]="
-        isAnswerChecked(question.option2)
-      "
-      [value]="question.option2"
-      [id]="'option2' + question.questionId"
-    />
-    <label [for]="'option2' + question.questionId">{{
-      question.option2
-    }}</label>
-    <br />
-    <input
-      type="checkbox"
-      (change)="onAnswerChange(question.option3)"
-      [checked]="
-        isAnswerChecked(question.option3)
-      "
-      [value]="question.option3"
-      [id]="'option3' + question.questionId"
-    />
-    <label [for]="'option3' + question.questionId">{{
-      question.option3
-    }}</label>
-    <br />
-    <input
-      type="checkbox"
-      (change)="onAnswerChange(question.option4)"
-      [checked]="
-        isAnswerChecked(question.option4)
-      "
-      [value]="question.option4"
-      [id]="'option4' + question.questionId"
-    />
-    <label [for]="'option4' + question.questionId">{{
-      question.option4
-    }}</label>
-    <br />
-  </div>
+    <div *ngFor="let option of question.options; let i = index;">
+      <input type="checkbox" (change)="onAnswerChange(option)" [checked]="
+            isAnswerChecked(option)
+          " [value]="option" [id]="'option' + i + question.questionId" />
+      <label [for]="'option' + i + question.questionId">{{
+              option
+            }}</label>
+      <br />
+    </div>
+</div>

@@ -1,34 +1,77 @@
- export interface question {
-    questionId: number;
-    questionType: string;
-    questionText: string;
-    questionDifficulty: string;
-    option1: string;
-    option2: string;
-    option3: string;
-    option4: string;
-    correctOption: string[];
-    marksAllocated: number;
-  }
 
-  export interface answer {
-    questionId: number;
-    questionType: string;
-    questionText: string;
-    questionDifficulty: string;
-    option1: string;
-    option2: string;
-    option3: string;
-    option4: string;
-    correctOption: string[];
-    marksAllocated: number;
-    selectedOption: string[];
-    allotedMarks: number;
+export var QuestionBank  = {
+    "listOfMultipleAnswerTypeMcq": [
+        {
+            "questionId": 1,   
+            "questionDifficulty": "EASY",
+            "questionType": "MCQ_MULTIPLE",
+            "questionTag": "Yo",
+            "questionCreationTimestamp": "2020-09-09T13:34:37.3221172",
+            "questionUpdateTimestamp": "2020-09-09T13:34:37.3221172",
+            "questionMarks": 100.0,
+            "questionNegativeMarks": -9.0,
+            "class_": 10,
+            "questionSubject": "Phy",
+            "questionText": "What is an ohm?",
+            "options": [
+                "DCS",
+                "SS",
+                "gg",
+                "ww"
+            ],
+            "answers": [
+                "DCS",
+                "SS"
+            ]
+        }
+    ],
+    "listOfSingleAnswerTypeMcq": [
+        {
+            "questionId": 2,
+            "questionDifficulty": "EASY",
+            "questionType": "MCQ_SINGLE",
+            "questionTag": "Yo",
+            "questionCreationTimestamp": "2020-09-09T13:34:37.3221172",
+            "questionUpdateTimestamp": "2020-09-09T13:34:37.3221172",
+            "questionMarks": 100.0,
+            "questionNegativeMarks": -9.0,
+            "class_": 10,
+            "questionSubject": "English",
+            "questionText": "Who was shamu?",
+            "options": [
+                "AB",
+                "BC",
+                "CD",
+                "DE"
+            ],
+            "answer": "AB"
+        }
+    ]
+};
 
-  }
 
 
-export const QuestionBank: question[] = [
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const QuestionBank1 = [
     {
         "questionId": 1,
         "questionType": "mcq_single_answer",
