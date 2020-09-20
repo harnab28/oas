@@ -7,7 +7,7 @@ import { TestService } from '../../../services/test-service.service';
   templateUrl: './test-result.component.html',
   styleUrls: ['./test-result.component.scss'],
 })
-export class TestresultComponent implements OnInit {
+export class TestResultComponent implements OnInit {
   constructor(private ts: TestService) {}
 
   ngOnInit(): void {}

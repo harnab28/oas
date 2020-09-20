@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TestresultComponent } from './test-result/test-result.component';
+import { TestResultComponent } from './test-result/test-result.component';
 
 @NgModule({
-  declarations: [TestresultComponent],
+  declarations: [TestResultComponent],
   imports: [CommonModule],
-  exports: [TestresultComponent],
+  exports: [TestResultComponent],
 })
 export class EvaluateTestModule {}

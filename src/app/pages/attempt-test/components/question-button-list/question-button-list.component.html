@@ -1,0 +1,8 @@
+<div class="grid-container">
+  <span
+    *ngFor="let item of counter(numberOfButtons); let i = index"
+    class="col-3"
+  >
+    <button (click)="selectedButton(i)">{{ i + 1 }}</button> &nbsp;
+  </span>
+</div>

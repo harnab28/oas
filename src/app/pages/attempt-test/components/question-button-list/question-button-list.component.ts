@@ -12,7 +12,9 @@ export class QuestionButtonListComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    console.log(this.numberOfButtons);
+  }
 
   counter(i: number) {
     return new Array(i);

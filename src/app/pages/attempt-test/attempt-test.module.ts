@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExamQuestionComponent } from './exam-question/exam-question.component';
+import { TestQuestionComponent } from './test-question/test-question.component';
 import { FormsModule } from '@angular/forms';
 import { McqSingleAnswerComponent } from './components/mcq-single-answer/mcq-single-answer.component';
 import { McqMultiAnswerComponent } from './components/mcq-multi-answer/mcq-multi-answer.component';
@@ -8,12 +8,12 @@ import { QuestionButtonListComponent } from './components/question-button-list/q
 
 @NgModule({
   declarations: [
-    ExamQuestionComponent,
+    TestQuestionComponent,
     McqSingleAnswerComponent,
     McqMultiAnswerComponent,
     QuestionButtonListComponent,
   ],
   imports: [CommonModule, FormsModule],
-  exports: [ExamQuestionComponent],
+  exports: [TestQuestionComponent],
 })
-export class CreateExamModule {}
+export class AttemptTestModule {}
