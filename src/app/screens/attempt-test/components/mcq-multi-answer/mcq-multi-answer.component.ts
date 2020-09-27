@@ -10,23 +10,31 @@ export class McqMultiAnswerComponent implements OnInit {
   @Input() selectedAnswer: any;
   @Output() emitSelectedAnswer = new EventEmitter<string[]>();
 
-  answer = [];
-
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedAnswer;
+    console.log(this.selectedAnswer, this.question);
+  }
+
+  ngOnChanges(changes: any) {
+    console.log(changes);
+    this.question = !!changes.question
+      ? changes.question.currentValue
+      : this.question;
+  }
 
   onAnswerChange(answer) {
-    const index = this.answer.indexOf(answer);
+    const index = this.selectedAnswer.indexOf(answer);
     if (index > -1) {
-      this.answer.splice(index, 1);
+      this.selectedAnswer.splice(index, 1);
     } else {
-      this.answer.push(answer);
+      this.selectedAnswer.push(answer);
     }
-    this.emitSelectedAnswer.emit(this.answer);
+    this.emitSelectedAnswer.emit(this.selectedAnswer);
   }
 
   isAnswerChecked(answer) {
-    return this.answer.includes(answer);
+    return this.selectedAnswer.includes(answer);
   }
 }

@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-between align-items-center">
+  <h2>My Question Bank</h2>
+  <div>Time: {{ ellapsedTime }} / {{ duration }}</div>
+  <button type="button" class="btn btn-danger" (click)="onSubmit()">
+    Submit
+  </button>
+  &nbsp;
+</div>
+
+<div>
+  Name :
+  <input
+    type="text"
+    [(ngModel)]="candidateName"
+    name="name"
+    value="penopaper"
+    [disabled]="true"
+    id="name"
+  />
+</div>
+
+<div *ngIf="questionBank.length">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="w-100">
+      <h3>Question No. : {{ selectedQuestionIndex + 1 }}</h3>
+
+      <!-- <div *ngIf="selectedQuestion.questionType == 'MCQ_SINGLE'"> -->
+      <app-mcq-single-answer
+        *ngIf="selectedQuestion.questionType === 'MCQ_SINGLE'"
+        [question]="selectedQuestion"
+        [selectedAnswer]="answerList[selectedQuestionIndex].answerResponse"
+        (emitSelectedAnswer)="singleMcq($event, selectedQuestionIndex)"
+      >
+      </app-mcq-single-answer>
+      <!-- </div> -->
+
+      <!-- <div *ngIf="selectedQuestion.questionType == 'MCQ_MULTIPLE'"> -->
+      <app-mcq-multi-answer
+        *ngIf="selectedQuestion.questionType === 'MCQ_MULTIPLE'"
+        [question]="selectedQuestion"
+        [selectedAnswer]="answerList[selectedQuestionIndex].answerResponse"
+        (emitSelectedAnswer)="multiMcq($event, selectedQuestionIndex)"
+      >
+      </app-mcq-multi-answer>
+      <!-- </div> -->
+    </div>
+    <div style="width: 25%; max-height: 400px; overflow: scroll">
+      <questionButtonList
+        [numberOfButtons]="questionBank.length"
+        (emitSelectedButton)="clickedButton($event)"
+      >
+      </questionButtonList>
+    </div>
+  </div>
+
+  <div class="d-flex w-50 justify-content-around align-items-center">
+    <button type="button" class="btn btn-warning" (click)="remove()">
+      Clear Response
+    </button>
+    <button type="button" class="btn btn-primary" (click)="prev()">
+      Previous
+    </button>
+    <button type="button" class="btn btn-primary" (click)="next()">Next</button>
+  </div>
+</div>

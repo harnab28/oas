@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
-import { TestQuestionComponent } from './pages/attempt-test/test-question/test-question.component';
-import { TestResultComponent } from './pages/evaluate-test/test-result/test-result.component';
-import { StartTestComponent } from './pages/start-test/start-test/start-test.component';
+import { TestQuestionComponent } from './screens/attempt-test/test-question/test-question.component';
+import { TestResultComponent } from './screens/evaluate-test/test-result/test-result.component';
+import { StartTestComponent } from './screens/start-test/start-test/start-test.component';
 
 const routesList: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'start-test' },

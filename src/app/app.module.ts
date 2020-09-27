@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 
 import { routesList } from './app-routing.module';
 
-import { AttemptTestModule } from './pages/attempt-test/attempt-test.module';
-import { EvaluateTestModule } from './pages/evaluate-test/evaluate-test.module';
-import { StartTestModule } from './pages/start-test/start-test.module';
+import { AttemptTestModule } from './screens/attempt-test/attempt-test.module';
+import { EvaluateTestModule } from './screens/evaluate-test/evaluate-test.module';
+import { StartTestModule } from './screens/start-test/start-test.module';
 
 const routes: Routes = routesList;
 
